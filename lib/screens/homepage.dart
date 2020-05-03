@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sp_ask_dashboard_mobile_app_layout/screens/stories.dart';
+import 'package:flutter/services.dart';
+import 'package:sp_ask_dashboard_mobile_app_layout/screens/theame.dart';
 
 class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
@@ -10,9 +13,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown]);
+    //var deviceSize = MediaQuery.of(context).size;
+
     return MaterialApp(
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      title: 'step 18 day 2',
+      title: 'Mockup SP dashboard',
       home: Scaffold(
         appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -36,20 +44,68 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
        body: new Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+             // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(children: <Widget>[
-                  Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                  // Services
+Expanded(
+                  flex: 1,
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: primary
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                       Image.asset('images/male.png',height: 100.0,width: 100.0,),
+                       SizedBox(
+                           height: 20.0,
+                        ),
+                       Text('MALE',style: headlines)
+                     ],
+                      ),
+                   
+                  ),
+                ),
 
-                  )
-                ],),
-                new Text("John Doe",
-                    textScaleFactor: 1.5)
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: primary
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('images/female.png',height: 100.0,width: 100.0,),
+                        SizedBox(
+                           height: 20.0,
+                        ),
+                        Text('FEMALE',style: headlines)
+                      ],
+                    ),
+                  ),
+                )
               ],
-         
             ),
+            
+                  ],
+                ),
+                
       ),
     );
   }
 }
+
+
+
