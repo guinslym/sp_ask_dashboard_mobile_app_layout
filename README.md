@@ -15,6 +15,7 @@ A new Flutter project.
 3.  Replace On/OFF by icons (switch icon)
 4.  Add Chart for today (per hour)
 4.  Add pages (stats, operators)
+5.  Change App theme
 3.  Add API call
 5.  Bloc pattern
 
