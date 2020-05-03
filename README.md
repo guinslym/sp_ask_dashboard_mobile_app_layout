@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Weekend 1
 <p float="left">
-<img src="screenshots/flutter_01.png" width="200"/>
+<img src="screenshots/flutter_01.png" width="400"/>
 </p>
 
 
