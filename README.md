@@ -10,10 +10,12 @@ A new Flutter project.
 
 ## Todo
 
-1.  Clean the code
-2.  Add ListBuilder
+1.  Clean the code (prettify)
+2.  Add ListBuilder for operators
+3.  Replace On/OFF by icons (switch icon)
+4.  Add Chart for today (per hour)
+4.  Add pages (stats, operators)
 3.  Add API call
-4.  Add pages
 5.  Bloc pattern
 
 
