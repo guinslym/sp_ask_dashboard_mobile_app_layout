@@ -8,3 +8,12 @@ A new Flutter project.
 </p>
 
 
+## Todo
+
+1.  Clean the code
+2.  Add ListBuilder
+3.  Add API call
+4.  Add pages
+5.  Bloc pattern
+
+
