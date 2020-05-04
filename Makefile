@@ -42,6 +42,15 @@ github:
 info-github:
 	echo "\nOpen this github repository url \n"
 
+
+.PHONY: format
+format:
+	echo "--Code Formatting the lib directory--"
+	flutter format lib
+info-format:
+	echo "\n-Code Formatting all dart files in the lib directory \n"
+
+
 .PHONY: simulator
 simulator:
 	killall Simulator 2>&- && sleep 5 || true
