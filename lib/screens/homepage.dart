@@ -104,6 +104,7 @@ class _MyAppState extends State<MyApp> {
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
+                            //color: Color(0xff09081D),
                             offset: Offset(
                               5.0, // horizontal, move right 10
                               5.0, // vertical, move down 10
@@ -290,50 +291,64 @@ class _MyAppState extends State<MyApp> {
                 Text('Operator currently online', style: headlineTitle),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    children: <Widget>[
-                      ClipOval(
-                        child: Image.network(
-                          'https://avatars1.githubusercontent.com/u/4588993?s=400&v=4',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipOval(
-                        child: Image.network(
-                          'https://avatars1.githubusercontent.com/u/4588993?s=400&v=4',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipOval(
-                        child: Image.network(
-                          'https://avatars1.githubusercontent.com/u/4588993?s=400&v=4',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
+
+
+
+
+
+
+Expanded(
+  flex: 1,
+  child:           Container(
+            width: double.infinity,
+            //height: 100.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: operators.length + 1,
+              itemBuilder: (BuildContext context, int index) {
+                if (index == 0) {
+                  return SizedBox(width: 10.0);
+                }
+                return Container(
+                  margin: EdgeInsets.all(10.0),
+                  width: 60.0,
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        offset: Offset(0, 2),
+                        blurRadius: 6.0,
                       ),
                     ],
                   ),
-                ),
-              ],
+                  child: CircleAvatar(
+                    child: ClipOval(
+                      child: Image(
+                        height: 60.0,
+                        width: 60.0,
+                        image: AssetImage(operators[index - 1]),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
-            Row(
-              children: <Widget>[],
-            ),
+          ),
+  
+  ),
+
           ],
+
+
+
+
         ),
+
+
+
       ),
     );
   }
