@@ -33,23 +33,7 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Color(0xff162029),
           automaticallyImplyLeading: false,
           elevation: 18.0,
-          title: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "SP Ask Dashboard",
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                Text(
-                  "Mobile app",
-                  style: TextStyle(fontSize: 14.0),
-                )
-              ],
-            ),
-          ),
+          title: AskAppBarContentWidget(),
         ),
         body: Column(
           //crossAxisAlignment: CrossAxisAlignment.center,
@@ -308,6 +292,35 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+
+
+class AskAppBarContentWidget extends StatelessWidget {
+  const AskAppBarContentWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "SP Ask Dashboard",
+            style: TextStyle(fontSize: 20.0),
+          ),
+          Text(
+            "Mobile app",
+            style: TextStyle(fontSize: 14.0),
+          )
+        ],
       ),
     );
   }
