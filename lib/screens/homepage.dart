@@ -2,6 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sp_ask_dashboard_mobile_app_layout/screens/theame.dart';
 
+// Http request
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
+/*
+
+queues = ['scholars-portal', "scholars-portal-txt", "clavardez"]
+start_url = "https://ca.libraryh3lp.com/presence/jid/"
+end_url =  "/chat.ca.libraryh3lp.com/text"
+*/
+
+Future<Album> fetchAlbum() async {
+  final response =
+      await http.get('https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text');
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Album.fromJson(json.decode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+
+class Album {
+  final int userId;
+  final int id;
+  final String title;
+
+  Album({this.userId, this.id, this.title});
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+    );
+  }
+}
+
+
 class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
 
@@ -10,13 +55,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
+
   final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
+  final List<String> services =  ['scholars-portal', "scholars-portal-txt", "clavardez"];
   int age = 17;
   int weight = 50;
 
   int height = 180;
   double maxHeight = 220;
   double minHeight = 120;
+
+  Future<Album> futureAlbum;
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = fetchAlbum();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +94,7 @@ class _MyAppState extends State<MyApp> {
           //crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
 
 
 
