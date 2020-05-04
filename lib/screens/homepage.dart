@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sp_ask_dashboard_mobile_app_layout/models/staff.dart';
 import 'package:flutter/services.dart';
 import 'package:sp_ask_dashboard_mobile_app_layout/screens/theame.dart';
 
@@ -18,30 +17,6 @@ class _MyAppState extends State<MyApp> {
   int height = 180;
   double maxHeight = 220;
   double minHeight = 120;
-
-  ageIncrement() {
-    setState(() {
-      age++;
-    });
-  }
-
-  ageDecrement() {
-    setState(() {
-      age--;
-    });
-  }
-
-  weightIncrement() {
-    setState(() {
-      weight++;
-    });
-  }
-
-  weightDecrement() {
-    setState(() {
-      weight--;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
