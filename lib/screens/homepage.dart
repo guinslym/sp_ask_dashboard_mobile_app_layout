@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_ask_dashboard_mobile_app_layout/models/staff.dart';
 import 'package:flutter/services.dart';
 import 'package:sp_ask_dashboard_mobile_app_layout/screens/theame.dart';
 
@@ -67,11 +68,11 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               
-              new Text(
+               Text(
                 "SP Ask Dashboard",
                 style: TextStyle(fontSize: 20.0),
               ),
-              new Text(
+               Text(
                 "Mobile app",
                 style: TextStyle(fontSize: 14.0),
               )
@@ -79,7 +80,11 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-       body: new Column(
+       body: ListView(
+        physics: AlwaysScrollableScrollPhysics(),
+        children: <Widget>[ 
+       
+       Column(
          
               //crossAxisAlignment: CrossAxisAlignment.center,
              // mainAxisAlignment: MainAxisAlignment.center,
@@ -358,13 +363,62 @@ ClipOval(
 
             Row(children: <Widget>[
 
+
+
+ Container(
+            width: double.infinity,
+            height: 100.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: operators.length + 1,
+              itemBuilder: (BuildContext context, int index) {
+                if (index == 0) {
+                  return SizedBox(width: 10.0);
+                }
+                return Container(
+                  margin: EdgeInsets.all(10.0),
+                  width: 60.0,
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        offset: Offset(0, 2),
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                  child: CircleAvatar(
+                    child: ClipOval(
+                      child: Image(
+                        height: 60.0,
+                        width: 60.0,
+                        image: AssetImage(operators[index - 1]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+
+
+              },
+            ),
+          ),
+        ],
+      ),
+
+
+
+
             ],
             ),
             
-                  ],
-                ),
+                  
                 
-      ),
+        ]
+       ),
+      )
     );
   }
 }
