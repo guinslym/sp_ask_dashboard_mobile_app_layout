@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Mockup SP dashboard',
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xff162029),
           automaticallyImplyLeading: false,
           elevation: 18.0,
           title: Center(
