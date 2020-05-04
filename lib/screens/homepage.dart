@@ -60,8 +60,10 @@ class _AskDashboardState extends State<AskDashboard> {
           children: <Widget>[
             // Services
 
-            AskServiceWidget(),
-            AskServiceWidget(),
+            AskContent(cardTitle: Text('Daily'), cardValue:Text("90",
+                  style: resultContentAskWhite)),
+            AskContent(cardTitle: Text('Monthly'), cardValue:Text("1,534",
+                  style: resultContentAskWhite)),
           ],
         ),
         AskAddSpaceToRowWidget(),
@@ -75,9 +77,12 @@ class _AskDashboardState extends State<AskDashboard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            AskServiceWidget(),
-            AskServiceWidget(),
-            AskServiceWidget(),
+            AskContent(cardTitle: Text('Web'), cardValue:Text("On",
+                  style: resultContentAskWhite)),
+            AskContent(cardTitle: Text('SMS'), cardValue:Text("On",
+                  style: resultContentAskWhite)),
+            AskContent(cardTitle: Text('Clavarder'), cardValue:Text("Off",
+                  style: resultContentAskRed)),
           ],
         ),
         AskAddSpaceToRowWidget(),
@@ -89,7 +94,8 @@ class _AskDashboardState extends State<AskDashboard> {
         ),
         Row(
           children: <Widget>[
-            AskServiceWidget(),
+            AskContent(cardTitle: Text('SMS'), cardValue:Text("5",
+                  style: resultContentAskWhite)),
           ],
         ),
       ],
@@ -110,9 +116,14 @@ class AskAddSpaceToRowWidget extends StatelessWidget {
   }
 }
 
-class AskServiceWidget extends StatelessWidget {
-  const AskServiceWidget({
-    Key key,
+class AskContent extends StatelessWidget {
+  
+
+  final Text cardTitle;
+  final Text cardValue;
+  //Color colour,
+  AskContent({Key key, @required this.cardTitle
+  , @required this.cardValue,
   }) : super(key: key);
 
   @override
@@ -137,14 +148,10 @@ class AskServiceWidget extends StatelessWidget {
             SizedBox(
               height: 40.0,
             ),
-            Text('SMS', style: headlines),
+            this.cardTitle ,
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Off",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 50.0)),
+              child: this.cardValue,
             ),
           ],
         ),

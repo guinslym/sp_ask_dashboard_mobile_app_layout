@@ -27,3 +27,13 @@ TextStyle resultNumber = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 80.0,
     letterSpacing: 0.1);
+
+TextStyle resultContentAskWhite = TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50.0);
+
+TextStyle resultContentAskRed = TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50.0);
