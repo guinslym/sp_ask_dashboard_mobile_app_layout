@@ -15,8 +15,8 @@ end_url =  "/chat.ca.libraryh3lp.com/text"
 */
 
 Future<Album> fetchAlbum() async {
-  final response =
-      await http.get('https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text');
+  final response = await http.get(
+      'https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text');
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -28,7 +28,6 @@ Future<Album> fetchAlbum() async {
     throw Exception('Failed to load album');
   }
 }
-
 
 class Album {
   final int userId;
@@ -46,19 +45,20 @@ class Album {
   }
 }
 
-
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
+class AskDashboard extends StatefulWidget {
+  AskDashboard({Key key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _AskDashboardState createState() => _AskDashboardState();
 }
 
-class _MyAppState extends State<MyApp> {
-  
-
+class _AskDashboardState extends State<AskDashboard> {
   final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
-  final List<String> services =  ['scholars-portal', "scholars-portal-txt", "clavardez"];
+  final List<String> services = [
+    'scholars-portal',
+    "scholars-portal-txt",
+    "clavardez"
+  ];
   int age = 17;
   int weight = 50;
 
@@ -75,91 +75,58 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     //var deviceSize = MediaQuery.of(context).size;
 
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
-      title: 'Mockup SP dashboard',
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xff162029),
-          automaticallyImplyLeading: false,
-          elevation: 18.0,
-          title: AskAppBarContentWidget(),
-        ),
-        body: Column(
-          //crossAxisAlignment: CrossAxisAlignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      //crossAxisAlignment: CrossAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        AskAddSpaceToRowWidget(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-
-
-
-
-            AskAddSpaceToRowWidget(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Stats', style: headlineTitle),
-              ],
-            ),
-            AskAddSpaceToRowWidget(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // Services
-                
-                AskServiceWidget(),
-                AskServiceWidget(),
-              ],
-            ),
-            AskAddSpaceToRowWidget(),
-            
-            
-            
-            
-            
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Services', style: headlineTitle),
-              ],
-            ),
-            AskAddSpaceToRowWidget(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                AskServiceWidget(),
-                AskServiceWidget(),
-                AskServiceWidget(),
-              ],
-            ),
-            AskAddSpaceToRowWidget(),
-
-
-
-
-
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Currently online', style: headlineTitle),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-              AskServiceWidget(),
-              ],
-            ),
-            
+            Text('Stats', style: headlineTitle),
           ],
         ),
-      ),
+        AskAddSpaceToRowWidget(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            // Services
+
+            AskServiceWidget(),
+            AskServiceWidget(),
+          ],
+        ),
+        AskAddSpaceToRowWidget(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Services', style: headlineTitle),
+          ],
+        ),
+        AskAddSpaceToRowWidget(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            AskServiceWidget(),
+            AskServiceWidget(),
+            AskServiceWidget(),
+          ],
+        ),
+        AskAddSpaceToRowWidget(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Currently online', style: headlineTitle),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            AskServiceWidget(),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -189,17 +156,14 @@ class AskServiceWidget extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(10.0),
         //height: MediaQuery.of(context).size.height * 0.25,
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(
-                  5.0, // horizontal, move right 10
-                  5.0, // vertical, move down 10
-                ),
-              )
-            ],
-            borderRadius: BorderRadius.circular(10.0),
-            color: primary),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            offset: Offset(
+              5.0, // horizontal, move right 10
+              5.0, // vertical, move down 10
+            ),
+          )
+        ], borderRadius: BorderRadius.circular(10.0), color: primary),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -222,8 +186,6 @@ class AskServiceWidget extends StatelessWidget {
     );
   }
 }
-
-
 
 class AskAppBarContentWidget extends StatelessWidget {
   const AskAppBarContentWidget({
