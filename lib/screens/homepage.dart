@@ -309,31 +309,10 @@ Expanded(
                 if (index == 0) {
                   return SizedBox(width: 10.0);
                 }
-                return Container(
-                  margin: EdgeInsets.all(10.0),
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        offset: Offset(0, 2),
-                        blurRadius: 6.0,
-                      ),
-                    ],
-                  ),
-                  child: CircleAvatar(
-                    child: ClipOval(
-                      child: Image(
-                        height: 60.0,
-                        width: 60.0,
-                        image: AssetImage(operators[index - 1]),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                );
+                
+
+
+                
               },
             ),
           ),
