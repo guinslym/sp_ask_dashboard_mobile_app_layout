@@ -39,18 +39,18 @@ class _MyAppState extends State<MyApp> {
           //crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
+
+
+
+
+            AskAddSpaceToRowWidget(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('Stats', style: headlineTitle),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
+            AskAddSpaceToRowWidget(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -60,18 +60,20 @@ class _MyAppState extends State<MyApp> {
                 AskServiceWidget(),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
+            AskAddSpaceToRowWidget(),
+            
+            
+            
+            
+            
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('Services', style: headlineTitle),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
+            AskAddSpaceToRowWidget(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -80,9 +82,13 @@ class _MyAppState extends State<MyApp> {
                 AskServiceWidget(),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
+            AskAddSpaceToRowWidget(),
+
+
+
+
+
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -91,15 +97,26 @@ class _MyAppState extends State<MyApp> {
             ),
             Row(
               children: <Widget>[
-              
               AskServiceWidget(),
-
-
               ],
             ),
+            
           ],
         ),
       ),
+    );
+  }
+}
+
+class AskAddSpaceToRowWidget extends StatelessWidget {
+  const AskAddSpaceToRowWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
     );
   }
 }
