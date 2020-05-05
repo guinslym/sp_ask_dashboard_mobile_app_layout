@@ -24,6 +24,20 @@ class AskDashboard extends StatefulWidget {
 }
 
 class _AskDashboardState extends State<AskDashboard> {
+
+  String url = "https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text";
+  Future<String> makeRequest() async {
+    var response = await http.get(Uri.encodeFull(url));
+    print(response.body);
+  }
+  Future<String> futureAlbum;
+   @override
+  void initState() {
+    super.initState();
+    futureAlbum = makeRequest();
+  }
+
+
   final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
   final List<String> services = [
     'scholars-portal',
@@ -71,6 +85,7 @@ class _AskDashboardState extends State<AskDashboard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Services', style: headlineTitle),
+            RaisedButton(child: Text('Make Requests'), onPressed: makeRequest)
           ],
         ),
         AskAddSpaceToRowWidget(),
