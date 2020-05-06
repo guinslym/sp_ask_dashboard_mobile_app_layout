@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-## Layout 1
+## KSKS Layout
 <p float="left">
 <img src="screenshots/flutter_01.png" width="400"/>
 </p>
