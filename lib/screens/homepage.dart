@@ -25,16 +25,23 @@ class AskDashboard extends StatefulWidget {
 
 class _AskDashboardState extends State<AskDashboard> {
 
-  String url = "https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text";
-  Future<String> makeRequest() async {
+  String response = "HEllO";
+
+  Future<String> _makeRequest() async {
+    String url = "https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text";
     var response = await http.get(Uri.encodeFull(url));
-    print(response.body);
+    print(response.body.toString());
+
+    return response.body.toString();
+    
   }
-  Future<String> futureAlbum;
+
+
+  Future<String> serviceContentValue;
    @override
   void initState() {
     super.initState();
-    futureAlbum = makeRequest();
+    serviceContentValue = _makeRequest();
   }
 
 
@@ -85,7 +92,15 @@ class _AskDashboardState extends State<AskDashboard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Services', style: headlineTitle),
-            RaisedButton(child: Text('Make Requests'), onPressed: makeRequest)
+
+            Container(
+              child: FutureBuilder(
+                future: _makeRequest(),
+                builder: (BuildContext context, AsyncSnapshot snapshot){
+                  return Text(this.serviceContentValue.toString());
+                })
+            ),
+            
           ],
         ),
         AskAddSpaceToRowWidget(),

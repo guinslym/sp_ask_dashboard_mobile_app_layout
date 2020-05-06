@@ -1,6 +1,8 @@
 ☐ Tutorial to read
     ☐ How to pass basic auth credentials in API call for a Flutter mobile application?
     ☐ How to load JSON assets into Flutter App
-    ☐ Flutter: Fetch data from the internet
+    ✔ Flutter: Fetch data from the internet @done(20-05-04 17:51)
     ☐ Flutter : Fetching & Parsing JSON data
     ☐ Use Environment Variables in CI/CD for Flutter Apps
+    ☐ Flutter: Icons class
+    ☐ https://github.com/nisrulz/flutter-examples
