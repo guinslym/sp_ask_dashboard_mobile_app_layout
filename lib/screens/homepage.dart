@@ -108,18 +108,6 @@ class _AskDashboardState extends State<AskDashboard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Services', style: headlineTitle),
-            Container(
-              child: FutureBuilder(
-                  future: _makeRequest("clavardez"),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.data == null) {
-                      return Text("loading...");
-                    } else {
-                      return Text(snapshot.data.toString()
-                        );
-                    }
-                  }),
-            ),
           ],
         ),
         AskAddSpaceToRowWidget(),
