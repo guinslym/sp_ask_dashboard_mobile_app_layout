@@ -4,6 +4,7 @@ import 'package:sp_ask_dashboard_mobile_app_layout/screens/theame.dart';
 import 'package:sp_ask_dashboard_mobile_app_layout/widgets/widgets.dart';
 
 // Http request
+import "package:intl/intl.dart";
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -36,7 +37,7 @@ class _AskDashboardState extends State<AskDashboard> {
     return response.body.toString();
   }
 
-  Text translateResponse(String answer) {
+  Text translateResponseService(String answer) {
     // print("my answer : " + answer.toString());
     if (answer.toString() == 'available') {
       return Text("On", style: resultContentAskWhite);
@@ -45,29 +46,29 @@ class _AskDashboardState extends State<AskDashboard> {
     }
   }
 
-request_library() async {
-
-print('hello');
-}
-
-  dioDemo() async {
-    try {
-      print('dioDemo start');
-      Dio dio = new Dio();
-      var response = await dio.get('https://flutter.dev',
-          options: Options(headers: {'user-agent': 'Custom-UA'}));
-      print('dioDemo Response code: ${response.statusCode}');
-      if (response.statusCode == "ok") {
-        print(response.data.toString());
-      } else {
-        print('dioDemo response error');
-      }
-    } catch (e) {
-      print('dioDemo error: $e');
-    } finally {
-      print('dioDemo end');
+    Text translateResponseInt(String answer) {
+    // print("my answer : " + answer.toString());
+    if (answer.toString().length >0) {
+      return Text(answer.toString(), style: resultContentAskWhite);
+    } else {
+      return Text(answer.toString(), style: resultContentAskRed);
     }
-  }   
+  }
+
+  Future<String> _getChats(String myQueue) async {
+    String url =
+        "http://localhost:5000/lh3/api/v1.0/$myQueue";
+        print(url);
+    var response = await http.get(Uri.encodeFull(url));
+    // print(myQueue + ": " + response.body.toString());
+    var jsonData = json.decode(response.body);
+    print(jsonData);
+
+    return jsonData['result'];
+  }
+
+
+  
 Map headers = {
     'content-type': 'application/json',
     'accept': 'application/json',
@@ -93,14 +94,42 @@ Map headers = {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            // Services
+            // Stats
 
-            AskContent(
+                FutureBuilder(
+        future: _getChats("daily"),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null) {
+            return AskContent(
+              cardTitle: Text('Daily'),
+              cardValue:
+                  Text(loading, style: resultContentAskWhite),
+            );
+          } else {
+            return AskContent(
                 cardTitle: Text('Daily'),
-                cardValue: Text("90", style: resultContentAskWhite)),
-            AskContent(
+                cardValue: translateResponseInt(snapshot.data.toString()));
+          }
+        }),
+
+                FutureBuilder(
+        future: _getChats("monthly"),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null) {
+            return AskContent(
+              cardTitle: Text('Monthly'),
+              cardValue:
+                  Text(loading, style: resultContentAskWhite),
+            );
+          } else {
+            return AskContent(
                 cardTitle: Text('Monthly'),
-                cardValue: Text("1,534", style: resultContentAskWhite)),
+                cardValue: translateResponseInt(snapshot.data.toString()));
+          }
+        }),
+
+
+
           ],
         ),
         AskAddSpaceToRowWidget(),
@@ -126,7 +155,7 @@ Map headers = {
                   } else {
                     return AskContent(
                         cardTitle: Text('web'),
-                        cardValue: translateResponse(snapshot.data.toString()));
+                        cardValue: translateResponseService(snapshot.data.toString()));
                   }
                 }),
             FutureBuilder(
@@ -141,7 +170,7 @@ Map headers = {
                   } else {
                     return AskContent(
                         cardTitle: Text('clavardez'),
-                        cardValue: translateResponse(snapshot.data.toString()));
+                        cardValue: translateResponseService(snapshot.data.toString()));
                   }
                 }),
             FutureBuilder(
@@ -156,7 +185,7 @@ Map headers = {
                   } else {
                     return AskContent(
                       cardTitle: Text('sms'),
-                      cardValue: translateResponse(snapshot.data.toString()),
+                      cardValue: translateResponseService(snapshot.data.toString()),
                     );
                   }
                 }),
@@ -171,13 +200,27 @@ Map headers = {
         ),
         Row(
           children: <Widget>[
-            AskContent(
-                cardTitle: Text('SMS'),
-                cardValue: Text("5", style: resultContentAskWhite)),
+
+            FutureBuilder(
+        future: _getChats("online_operators"),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null) {
+            return AskContent(
+              cardTitle: Text('Operators'),
+              cardValue:
+                  Text(loading, style: resultContentAskWhite),
+            );
+          } else {
+            return AskContent(
+                cardTitle: Text('Operators'),
+                cardValue: translateResponseInt(snapshot.data.toString()));
+          }
+        }),
+
           ],
         ),
         RaisedButton(
-          onPressed: request_library,
+          onPressed: () => _getChats("monthly"),
           child: Text("Refresh"),
           color: Colors.grey,
           textColor: Colors.white,
