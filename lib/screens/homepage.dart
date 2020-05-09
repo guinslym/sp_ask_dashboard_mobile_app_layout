@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:requests/requests.dart';
 
 /*
 
@@ -43,6 +44,11 @@ class _AskDashboardState extends State<AskDashboard> {
       return Text("Off", style: resultContentAskRed);
     }
   }
+
+request_library() async {
+
+print('hello');
+}
 
   dioDemo() async {
     try {
@@ -171,7 +177,7 @@ Map headers = {
           ],
         ),
         RaisedButton(
-          onPressed: dioDemo,
+          onPressed: request_library,
           child: Text("Refresh"),
           color: Colors.grey,
           textColor: Colors.white,
