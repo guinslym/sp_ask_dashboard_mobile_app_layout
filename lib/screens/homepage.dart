@@ -43,13 +43,6 @@ class _AskDashboardState extends State<AskDashboard> {
     }
   }
 
-  final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
-  int age = 17;
-  int weight = 50;
-
-  int height = 180;
-  double maxHeight = 220;
-  double minHeight = 120;
 
   @override
   Widget build(BuildContext context) {
