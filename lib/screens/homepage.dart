@@ -34,12 +34,6 @@ class _AskDashboardState extends State<AskDashboard> {
     return response.body.toString();
   }
 
-  Future<String> serviceContentValue;
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Text translateResponse(String answer) {
     print("my answer : " + answer.toString());
     if (answer.toString() == 'available') {
