@@ -14,8 +14,6 @@ start_url = "https://ca.libraryh3lp.com/presence/jid/"
 end_url =  "/chat.ca.libraryh3lp.com/text"
 */
 
-
-
 class AskDashboard extends StatefulWidget {
   AskDashboard({Key key}) : super(key: key);
 
@@ -24,26 +22,23 @@ class AskDashboard extends StatefulWidget {
 }
 
 class _AskDashboardState extends State<AskDashboard> {
-
   String response = "HEllO";
 
   Future<String> _makeRequest() async {
-    String url = "https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text";
+    String url =
+        "https://ca.libraryh3lp.com/presence/jid/clavardez/chat.ca.libraryh3lp.com/text";
     var response = await http.get(Uri.encodeFull(url));
     print(response.body.toString());
 
     return response.body.toString();
-    
   }
 
-
   Future<String> serviceContentValue;
-   @override
+  @override
   void initState() {
     super.initState();
     serviceContentValue = _makeRequest();
   }
-
 
   final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
   final List<String> services = [
@@ -57,8 +52,6 @@ class _AskDashboardState extends State<AskDashboard> {
   int height = 180;
   double maxHeight = 220;
   double minHeight = 120;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +74,12 @@ class _AskDashboardState extends State<AskDashboard> {
           children: <Widget>[
             // Services
 
-            AskContent(cardTitle: Text('Daily'), cardValue:Text("90",
-                  style: resultContentAskWhite)),
-            AskContent(cardTitle: Text('Monthly'), cardValue:Text("1,534",
-                  style: resultContentAskWhite)),
+            AskContent(
+                cardTitle: Text('Daily'),
+                cardValue: Text("90", style: resultContentAskWhite)),
+            AskContent(
+                cardTitle: Text('Monthly'),
+                cardValue: Text("1,534", style: resultContentAskWhite)),
           ],
         ),
         AskAddSpaceToRowWidget(),
@@ -92,27 +87,27 @@ class _AskDashboardState extends State<AskDashboard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Services', style: headlineTitle),
-
             Container(
-              child: FutureBuilder(
-                future: _makeRequest(),
-                builder: (BuildContext context, AsyncSnapshot snapshot){
-                  return Text(this.serviceContentValue.toString());
-                })
-            ),
-            
+                child: FutureBuilder(
+                    future: _makeRequest(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return Text(this.serviceContentValue.toString());
+                    })),
           ],
         ),
         AskAddSpaceToRowWidget(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            AskContent(cardTitle: Text('Web'), cardValue:Text("On",
-                  style: resultContentAskWhite)),
-            AskContent(cardTitle: Text('SMS'), cardValue:Text("On",
-                  style: resultContentAskWhite)),
-            AskContent(cardTitle: Text('Clavarder'), cardValue:Text("Off",
-                  style: resultContentAskRed)),
+            AskContent(
+                cardTitle: Text('Web'),
+                cardValue: Text("On", style: resultContentAskWhite)),
+            AskContent(
+                cardTitle: Text('SMS'),
+                cardValue: Text("On", style: resultContentAskWhite)),
+            AskContent(
+                cardTitle: Text('Clavarder'),
+                cardValue: Text("Off", style: resultContentAskRed)),
           ],
         ),
         AskAddSpaceToRowWidget(),
@@ -124,8 +119,9 @@ class _AskDashboardState extends State<AskDashboard> {
         ),
         Row(
           children: <Widget>[
-            AskContent(cardTitle: Text('SMS'), cardValue:Text("5",
-                  style: resultContentAskWhite)),
+            AskContent(
+                cardTitle: Text('SMS'),
+                cardValue: Text("5", style: resultContentAskWhite)),
           ],
         ),
       ],
@@ -147,13 +143,13 @@ class AskAddSpaceToRowWidget extends StatelessWidget {
 }
 
 class AskContent extends StatelessWidget {
-  
-
   final Text cardTitle;
   final Text cardValue;
   //Color colour,
-  AskContent({Key key, @required this.cardTitle
-  , @required this.cardValue,
+  AskContent({
+    Key key,
+    @required this.cardTitle,
+    @required this.cardValue,
   }) : super(key: key);
 
   @override
@@ -178,7 +174,7 @@ class AskContent extends StatelessWidget {
             SizedBox(
               height: 40.0,
             ),
-            this.cardTitle ,
+            this.cardTitle,
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: this.cardValue,
