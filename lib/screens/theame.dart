@@ -32,3 +32,6 @@ TextStyle resultContentAskWhite =
 
 TextStyle resultContentAskRed =
     TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 50.0);
+
+TextStyle resultContentLoading =
+    TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20.0);

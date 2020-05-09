@@ -41,20 +41,6 @@ class _AskDashboardState extends State<AskDashboard> {
   @override
   void initState() {
     super.initState();
-    // serviceContentValue = _makeRequest("clavardez");
-    response = 'Not in state';
-  }
-
-  void getService() {
-    var allQueues = [
-      "scholars-portal",
-      "clavardez",
-      "scholars-portal-txt",
-      "yrok"
-    ];
-    for (var queue in allQueues) {
-      _makeRequest(queue);
-    }
   }
 
   Text translateResponse(String answer) {
@@ -120,7 +106,8 @@ class _AskDashboardState extends State<AskDashboard> {
                   if (snapshot.data == null) {
                     return AskContent(
                       cardTitle: Text('web'),
-                      cardValue: Text('loading...'),
+                      cardValue:
+                          Text('loading...', style: resultContentLoading),
                     );
                   } else {
                     return AskContent(
@@ -134,7 +121,8 @@ class _AskDashboardState extends State<AskDashboard> {
                   if (snapshot.data == null) {
                     return AskContent(
                       cardTitle: Text('clavardez'),
-                      cardValue: Text('loading...'),
+                      cardValue:
+                          Text('loading...', style: resultContentLoading),
                     );
                   } else {
                     return AskContent(
@@ -148,7 +136,8 @@ class _AskDashboardState extends State<AskDashboard> {
                   if (snapshot.data == null) {
                     return AskContent(
                       cardTitle: Text('sms'),
-                      cardValue: Text('loading...'),
+                      cardValue:
+                          Text('loading...', style: resultContentLoading),
                     );
                   } else {
                     return AskContent(
@@ -174,7 +163,7 @@ class _AskDashboardState extends State<AskDashboard> {
           ],
         ),
         RaisedButton(
-          onPressed: () => getService(),
+          onPressed: null,
           child: Text("Refresh"),
           color: Colors.grey,
           textColor: Colors.white,
