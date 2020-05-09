@@ -7,6 +7,7 @@ import 'package:sp_ask_dashboard_mobile_app_layout/widgets/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:dio/dio.dart';
 
 /*
 
@@ -29,13 +30,13 @@ class _AskDashboardState extends State<AskDashboard> {
     String url =
         "https://ca.libraryh3lp.com/presence/jid/$myQueue/chat.ca.libraryh3lp.com/text";
     var response = await http.get(Uri.encodeFull(url));
-    print(myQueue + ": " + response.body.toString());
+    // print(myQueue + ": " + response.body.toString());
 
     return response.body.toString();
   }
 
   Text translateResponse(String answer) {
-    print("my answer : " + answer.toString());
+    // print("my answer : " + answer.toString());
     if (answer.toString() == 'available') {
       return Text("On", style: resultContentAskWhite);
     } else {
@@ -43,6 +44,29 @@ class _AskDashboardState extends State<AskDashboard> {
     }
   }
 
+  dioDemo() async {
+    try {
+      print('dioDemo start');
+      Dio dio = new Dio();
+      var response = await dio.get('https://flutter.dev',
+          options: Options(headers: {'user-agent': 'Custom-UA'}));
+      print('dioDemo Response code: ${response.statusCode}');
+      if (response.statusCode == "ok") {
+        print(response.data.toString());
+      } else {
+        print('dioDemo response error');
+      }
+    } catch (e) {
+      print('dioDemo error: $e');
+    } finally {
+      print('dioDemo end');
+    }
+  }   
+Map headers = {
+    'content-type': 'application/json',
+    'accept': 'application/json',
+    'authorization': 'Basic ' + base64Encode(utf8.encode('user:pass'))
+ };
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +171,7 @@ class _AskDashboardState extends State<AskDashboard> {
           ],
         ),
         RaisedButton(
-          onPressed: null,
+          onPressed: dioDemo,
           child: Text("Refresh"),
           color: Colors.grey,
           textColor: Colors.white,
