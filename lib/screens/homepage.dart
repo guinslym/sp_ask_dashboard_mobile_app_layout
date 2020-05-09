@@ -23,7 +23,6 @@ class AskDashboard extends StatefulWidget {
 }
 
 class _AskDashboardState extends State<AskDashboard> {
-  String response = "HEllO";
   String loading = "?";
 
   Future<String> _makeRequest(String myQueue) async {
