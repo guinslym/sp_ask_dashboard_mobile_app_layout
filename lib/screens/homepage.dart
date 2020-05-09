@@ -23,18 +23,19 @@ class AskDashboard extends StatefulWidget {
 }
 
 class _AskDashboardState extends State<AskDashboard> {
-
-  void ButtonClick(){
+  void ButtonClick() {
     print("Button cliccked");
   }
+
   String response = "HEllO";
   String web = "?";
   String sms = "?";
   String clavardez = "?";
 
-  Future<String> _makeRequest({String my_queue="clavardez"}) async {
-    String url =
-        "https://ca.libraryh3lp.com/presence/jid/"+my_queue+"/chat.ca.libraryh3lp.com/text";
+  Future<String> _makeRequest({String my_queue = "clavardez"}) async {
+    String url = "https://ca.libraryh3lp.com/presence/jid/" +
+        my_queue +
+        "/chat.ca.libraryh3lp.com/text";
     var response = await http.get(Uri.encodeFull(url));
     print(response.body.toString());
 
@@ -139,18 +140,8 @@ class _AskDashboardState extends State<AskDashboard> {
           color: Colors.grey,
           textColor: Colors.white,
           highlightColor: Colors.black,
-
-
-          )
+        )
       ],
     );
   }
 }
-
-
-
-
-
-
-
-
