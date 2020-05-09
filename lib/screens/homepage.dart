@@ -23,21 +23,16 @@ class AskDashboard extends StatefulWidget {
 }
 
 class _AskDashboardState extends State<AskDashboard> {
-  void ButtonClick() {
-    print("Button cliccked");
-  }
-
   String response = "HEllO";
   String web = "?";
   String sms = "?";
   String clavardez = "?";
 
-  Future<String> _makeRequest({String my_queue = "clavardez"}) async {
-    String url = "https://ca.libraryh3lp.com/presence/jid/" +
-        my_queue +
-        "/chat.ca.libraryh3lp.com/text";
+  Future<String> _makeRequest(String myQueue) async {
+    String url =
+        "https://ca.libraryh3lp.com/presence/jid/$myQueue/chat.ca.libraryh3lp.com/text";
     var response = await http.get(Uri.encodeFull(url));
-    print(response.body.toString());
+    print(myQueue + ": " + response.body.toString());
 
     return response.body.toString();
   }
@@ -46,16 +41,32 @@ class _AskDashboardState extends State<AskDashboard> {
   @override
   void initState() {
     super.initState();
-    serviceContentValue = _makeRequest();
+    // serviceContentValue = _makeRequest("clavardez");
     response = 'Not in state';
   }
 
+  void getService() {
+    var allQueues = [
+      "scholars-portal",
+      "clavardez",
+      "scholars-portal-txt",
+      "yrok"
+    ];
+    for (var queue in allQueues) {
+      _makeRequest(queue);
+    }
+  }
+
+  Text translateResponse(String answer){
+    print("my answer : "+answer.toString());
+    if (answer.toString() == 'available'){
+      return Text("On", style:resultContentAskWhite);
+    }else{
+      return Text("Off", style:resultContentAskRed);
+    }
+  }
+
   final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
-  final List<String> services = [
-    'scholars-portal',
-    "scholars-portal-txt",
-    "clavardez"
-  ];
   int age = 17;
   int weight = 50;
 
@@ -98,26 +109,77 @@ class _AskDashboardState extends State<AskDashboard> {
           children: <Widget>[
             Text('Services', style: headlineTitle),
             Container(
-                child: FutureBuilder(
-                    future: _makeRequest(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      return Text(this.serviceContentValue.toString());
-                    })),
+              child: FutureBuilder(
+                  future: _makeRequest("clavardez"),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.data == null) {
+                      return Text("loading...");
+                    } else {
+                      return Text(snapshot.data.toString()
+                        );
+                    }
+                  }),
+            ),
           ],
         ),
         AskAddSpaceToRowWidget(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            AskContent(
-                cardTitle: Text('Web'),
-                cardValue: Text('$web', style: resultContentAskWhite)),
-            AskContent(
-                cardTitle: Text('SMS'),
-                cardValue: Text("On", style: resultContentAskWhite)),
-            AskContent(
-                cardTitle: Text('Clavarder'),
-                cardValue: Text("Off", style: resultContentAskRed)),
+            
+            FutureBuilder(
+                future: _makeRequest("scholars-portal"),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return AskContent(
+                      cardTitle: Text('web'),
+                      cardValue:
+                          Text('loading...'),
+                    );
+                  } else {
+                    return AskContent(
+                      cardTitle: Text('web'),
+                      cardValue: 
+                        translateResponse(snapshot.data.toString())
+                    );
+                  }
+                }),
+
+                FutureBuilder(
+                future: _makeRequest("clavardez"),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return AskContent(
+                      cardTitle: Text('clavardez'),
+                      cardValue:
+                          Text('loading...'),
+                    );
+                  } else {
+                    return AskContent(
+                      cardTitle: Text('clavardez'),
+                      cardValue: translateResponse(snapshot.data.toString())
+                    );
+                  }
+                }),
+            
+
+            FutureBuilder(
+                future: _makeRequest("scholars-portal-txt"),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return AskContent(
+                      cardTitle: Text('sms'),
+                      cardValue:
+                          Text('loading...'),
+                    );
+                  } else {
+                    return AskContent(
+                      cardTitle: Text('sms'),
+                      cardValue: translateResponse(snapshot.data.toString()),
+                    );
+                  }
+                }),
+
           ],
         ),
         AskAddSpaceToRowWidget(),
@@ -135,7 +197,7 @@ class _AskDashboardState extends State<AskDashboard> {
           ],
         ),
         RaisedButton(
-          onPressed: ButtonClick,
+          onPressed: () => getService(),
           child: Text("Refresh"),
           color: Colors.grey,
           textColor: Colors.white,
