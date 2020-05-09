@@ -24,9 +24,7 @@ class AskDashboard extends StatefulWidget {
 
 class _AskDashboardState extends State<AskDashboard> {
   String response = "HEllO";
-  String web = "?";
-  String sms = "?";
-  String clavardez = "?";
+  String loading = "?";
 
   Future<String> _makeRequest(String myQueue) async {
     String url =
@@ -107,7 +105,7 @@ class _AskDashboardState extends State<AskDashboard> {
                     return AskContent(
                       cardTitle: Text('web'),
                       cardValue:
-                          Text('loading...', style: resultContentLoading),
+                          Text(loading, style: resultContentAskWhite),
                     );
                   } else {
                     return AskContent(
@@ -122,7 +120,7 @@ class _AskDashboardState extends State<AskDashboard> {
                     return AskContent(
                       cardTitle: Text('clavardez'),
                       cardValue:
-                          Text('loading...', style: resultContentLoading),
+                          Text(loading, style: resultContentAskWhite),
                     );
                   } else {
                     return AskContent(
@@ -137,7 +135,7 @@ class _AskDashboardState extends State<AskDashboard> {
                     return AskContent(
                       cardTitle: Text('sms'),
                       cardValue:
-                          Text('loading...', style: resultContentLoading),
+                          Text(loading, style: resultContentAskWhite),
                     );
                   } else {
                     return AskContent(
