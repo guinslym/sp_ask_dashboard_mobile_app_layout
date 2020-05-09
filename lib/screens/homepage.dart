@@ -57,12 +57,12 @@ class _AskDashboardState extends State<AskDashboard> {
     }
   }
 
-  Text translateResponse(String answer){
-    print("my answer : "+answer.toString());
-    if (answer.toString() == 'available'){
-      return Text("On", style:resultContentAskWhite);
-    }else{
-      return Text("Off", style:resultContentAskRed);
+  Text translateResponse(String answer) {
+    print("my answer : " + answer.toString());
+    if (answer.toString() == 'available') {
+      return Text("On", style: resultContentAskWhite);
+    } else {
+      return Text("Off", style: resultContentAskRed);
     }
   }
 
@@ -114,51 +114,41 @@ class _AskDashboardState extends State<AskDashboard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            
             FutureBuilder(
                 future: _makeRequest("scholars-portal"),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
                     return AskContent(
                       cardTitle: Text('web'),
-                      cardValue:
-                          Text('loading...'),
+                      cardValue: Text('loading...'),
                     );
                   } else {
                     return AskContent(
-                      cardTitle: Text('web'),
-                      cardValue: 
-                        translateResponse(snapshot.data.toString())
-                    );
+                        cardTitle: Text('web'),
+                        cardValue: translateResponse(snapshot.data.toString()));
                   }
                 }),
-
-                FutureBuilder(
+            FutureBuilder(
                 future: _makeRequest("clavardez"),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
                     return AskContent(
                       cardTitle: Text('clavardez'),
-                      cardValue:
-                          Text('loading...'),
+                      cardValue: Text('loading...'),
                     );
                   } else {
                     return AskContent(
-                      cardTitle: Text('clavardez'),
-                      cardValue: translateResponse(snapshot.data.toString())
-                    );
+                        cardTitle: Text('clavardez'),
+                        cardValue: translateResponse(snapshot.data.toString()));
                   }
                 }),
-            
-
             FutureBuilder(
                 future: _makeRequest("scholars-portal-txt"),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
                     return AskContent(
                       cardTitle: Text('sms'),
-                      cardValue:
-                          Text('loading...'),
+                      cardValue: Text('loading...'),
                     );
                   } else {
                     return AskContent(
@@ -167,7 +157,6 @@ class _AskDashboardState extends State<AskDashboard> {
                     );
                   }
                 }),
-
           ],
         ),
         AskAddSpaceToRowWidget(),
