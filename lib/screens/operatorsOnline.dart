@@ -34,15 +34,19 @@ class operatorList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Center(
-            child: Text("operatorList"),
-          ),
-        ],
-      ),
-    );
+    return ListView.separated(
+          itemCount: messages.length,
+          separatorBuilder: (context, index) => Divider(),
+          itemBuilder: (BuildContext context, int index){
+            var title = messages[index];
+            return ListTile(
+              title: Text(title),
+              isThreeLine: true,
+              leading: CircleAvatar(
+                child:  Text("QC"),
+              ),
+              subtitle: Text("Another Post $index with very longstile lorem ipsum"),);
+          },
+          );
   }
 }
