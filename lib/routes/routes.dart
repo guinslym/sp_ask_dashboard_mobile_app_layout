@@ -7,4 +7,3 @@ String homepage = "/";
 String errorPage = "/errorPage";
 String stats = "/stats";
 String listChats = "/listChats";
-

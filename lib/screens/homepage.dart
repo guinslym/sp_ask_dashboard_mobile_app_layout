@@ -7,12 +7,25 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-/*
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-queues = ['scholars-portal', "scholars-portal-txt", "clavardez"]
-start_url = "https://ca.libraryh3lp.com/presence/jid/"
-end_url =  "/chat.ca.libraryh3lp.com/text"
-*/
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff162029),
+        automaticallyImplyLeading: false,
+        elevation: 18.0,
+        title: AskAppBarContentWidget(),
+      ),
+      body: AskDashboard(),
+    );
+  }
+}
 
 class AskDashboard extends StatefulWidget {
   AskDashboard({Key key}) : super(key: key);
