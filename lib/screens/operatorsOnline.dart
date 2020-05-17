@@ -9,7 +9,9 @@ class operatorsOnlineScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(child: Text("operatorsOnlineScreen"),),
+          Center(
+            child: Text("operatorsOnlineScreen"),
+          ),
         ],
       ),
     );

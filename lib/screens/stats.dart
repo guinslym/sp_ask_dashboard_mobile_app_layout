@@ -9,7 +9,9 @@ class stats extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(child: Text("stats"),),
+          Center(
+            child: Text("stats"),
+          ),
         ],
       ),
     );

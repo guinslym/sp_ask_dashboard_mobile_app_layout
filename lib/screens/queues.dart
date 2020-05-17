@@ -9,7 +9,9 @@ class queuesScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(child: Text("queuesScreen"),),
+          Center(
+            child: Text("queuesScreen"),
+          ),
         ],
       ),
     );

@@ -9,7 +9,9 @@ class operatorsDetailsScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(child: Text("operatorsDetailsScreen"),),
+          Center(
+            child: Text("operatorsDetailsScreen"),
+          ),
         ],
       ),
     );
